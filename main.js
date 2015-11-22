@@ -2,6 +2,7 @@ window.onload = function(){
 
 	var gamepad = new Gamepad();
 	var alert = new Alert("alert");
+	var canvas = new Canvas('canvas');
 
 	if(gamepad.hasSupport()){
 		alert.info('This browser has support to Gamepad API!');
@@ -20,5 +21,11 @@ window.onload = function(){
 		alert.warn('Gamepad disconnected');
 	}
 
+	gamepad.onButtonPress = function(e){
+		canvas.buttonPress(e.button);
+	}
+
 	gamepad.checkConnected();
+
+	
 }

@@ -11,6 +11,7 @@ function Gamepad() {
 
 	this.onConnect = defaultFunction;
 	this.onDisconnect = defaultFunction;
+	this.onButtonPress = defaultFunction;
 
 	this.hasSupport = function() {
 		return !!navigator.getGamepads;
@@ -38,23 +39,51 @@ function Gamepad() {
 	});
 
 	window.addEventListener("gamepadbuttondown",function(e) {
-		console.log(e);
+		gamepad.onButtonPress(e);
 	});
 
 	this.startListening = function() {
-		timer = setInterval(function(){
 
-			var g = navigator.getGamepads()[0];
-			var pressed = g.buttons.filter(function(element){
-				return element.pressed == true;
-			});
+		var pressedButtons = {};
 
-			console.log(pressed);
+		timer = setInterval(function() {
 
-		},1000);
+			var gamepads = navigator.getGamepads();
+			for(var i=0;i< gamepads.length;i++) {
+
+				if(pressedButtons[i] === undefined) {
+					pressedButtons[i] = {};
+				}
+
+				if(gamepads[i] !== undefined) {
+					checkPressedButton(gamepads[i]);
+				}
+			}
+
+		},100);
 	}
 
 	this.stopListening = function() {
 		clearInterval(timer);
+	}
+
+	function checkPressedButton(aGamepad) {
+		var pressed = aGamepad.buttons.map(function(element,index) {
+				element.index = index;
+				return element;
+			}).filter(function(element){
+				return element.pressed == true;
+			}).map(function(element){
+				return element.index;
+			});
+
+			for(var key in pressed) {
+				var button = pressed[key];
+				var buttonDownEvent = new CustomEvent("gamepadbuttondown");
+				buttonDownEvent.button = button;
+				buttonDownEvent.gamepad = aGamepad;
+				window.dispatchEvent(buttonDownEvent);
+			}
+			return pressed;
 	}
 }

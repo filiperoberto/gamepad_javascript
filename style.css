@@ -2,3 +2,10 @@
 	width: 100%;
 	background:#281A11;
 }
+
+.button {
+    background: #407E57;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+}
