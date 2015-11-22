@@ -14,4 +14,8 @@ function Canvas(id) {
 		this.ctx.arc(20,20,15,0,2*Math.PI);
 		this.ctx.fill();
 	}
+
+	this.clear = function() {
+		this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
 }

@@ -25,6 +25,10 @@ window.onload = function(){
 		canvas.buttonPress(e.button);
 	}
 
+	gamepad.onButtonUp = function() {
+		canvas.clear();
+	}
+
 	gamepad.checkConnected();
 
 	
