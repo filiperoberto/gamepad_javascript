@@ -1,23 +1,22 @@
 {
-  "name": "imagesToVideo",
+  "name": "gamepad_javascript",
   "version": "1.0.0",
-  "description": "Use Whammy to create a video from images",
+  "description": "Use native browser gamepad API",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/filiperoberto/imagesToVideo.git"
+    "url": "https://github.com/filiperoberto/gamepad_javascript.git"
   },
   "keywords": [
-    "video",
-    "image"
+    "gamepad"
   ],
   "author": "Filipe Roberto Silva",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/filiperoberto/imagesToVideo/issues"
+    "url": "https://github.com/filiperoberto/gamepad_javascript/issues"
   },
   "devDependencies": {
     "gulp": "~3.9.0",
